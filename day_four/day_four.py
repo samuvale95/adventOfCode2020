@@ -1,6 +1,6 @@
 def read_input(filename):
     with open(filename, 'r') as f:
-        all_input = [ [j.split(':') for j in i.split(' ')] for i in [p.replace('\n', ' ') for p in f.read().split('\n\n')]]
+        all_input = [[j.split(':') for j in i.split(' ')] for i in [p.replace('\n', ' ') for p in f.read().split('\n\n')]]
         return [dict(i) for i in all_input]
 
 def is_passport(p):

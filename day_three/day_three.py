@@ -1,3 +1,5 @@
+from functools import reduce
+
 def read_input(filename):
     with open(filename, 'r') as f:
         return [line.strip() for line in f]
@@ -10,9 +12,7 @@ if __name__ == "__main__":
     slopes=[(1,1),(3,1),(5,1),(7,1),(1,2)]
 
     for i in slopes:
-        x=i[0]
-        y=i[1]
-
+        x,y=i
         trees=0
         for _ in range(0, len(mountain)-1):
             if(y>len(mountain)): break
@@ -21,7 +21,4 @@ if __name__ == "__main__":
             y+=i[1]
         all_trees.append(trees)
 
-mul=1
-for i in all_trees: mul*=i
-
-print(mul)
+print(reduce(lambda a,b: a*b, all_trees))
