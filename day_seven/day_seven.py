@@ -1,9 +1,5 @@
 def read_input(filename):
     with open(filename, 'r') as f:
-        return {line.split('bags contain')[0].strip(): [i.replace('.','').replace('bags', '').replace('bag','').strip()[2:] for i in line.split('bags contain')[1].split(',')] for line in f}
-
-def read_input_2(filename):
-    with open(filename, 'r') as f:
         tree = {}
         for line in f:
             k, v = [i.strip() for i in line.split('bags contain')]
@@ -14,9 +10,9 @@ def read_input_2(filename):
 def navigate(node ,tree):
     res = []
     for n in tree.get(node):
-        if('other' in n): continue
+        if('other' in n[1]): continue
         elif('shiny gold' in node): return True
-        else: res.append(navigate(n, tree))
+        else: res.append(navigate(n[1], tree))
     return any(res)
 
 def deep_calc(node, tree):
@@ -26,14 +22,13 @@ def deep_calc(node, tree):
 def first_part():
     cnt=0
     tree = read_input('in.txt')
-    for k,_ in tree.items():
+    for k in tree.keys():
         if k!='shiny gold' and navigate(k, tree) == True: cnt+=1
     print(cnt)
 
 def second_part():
-    pass
+    print(deep_calc('shiny gold', read_input('in.txt')))
 
 if __name__ == "__main__":
-
-    print(deep_calc('shiny gold', read_input_2('in.txt')))
-
+    first_part()
+    second_part()
