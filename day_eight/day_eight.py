@@ -7,7 +7,7 @@ def run_bootloader(prog):
     accumulator=0
 
     while(pc<len(prog)):
-        if(prog[pc][2] == True): return -1
+        if(prog[pc][2] == True): return None
 
         prog[pc][2]=True
         if(prog[pc][0] == 'acc'):
@@ -30,4 +30,4 @@ if __name__ == "__main__":
         else: continue
 
         res.append(run_bootloader(bl))
-    print([i for i in res if i != -1])
+    print([i for i in res if i is not None])
